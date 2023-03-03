@@ -10,8 +10,9 @@ APACHE_IP=$(cat /tmp/apache.txt)
 HAPROXY_IP=$(cat /tmp/haproxy.txt)
 
 # build ansible hosts here:
-sed -r -i "s/APACHE_IP/${APACHE_IP}/g"    hosts.yaml
-sed -r -i "s/HAPROXY_IP/${HAPROXY_IP}/g" hosts.yaml
+#sed -r -i "s/APACHE_IP/${APACHE_IP}/g"   hosts.yaml
+#sed -r -i "s/HAPROXY_IP/${HAPROXY_IP}/g" hosts.yaml
+
 # run ansible playbook for apache:
 #ansible-playbook -i hosts.yaml apache.yaml apache_hosts
 # run haproxy playbook for haproxy:
