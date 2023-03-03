@@ -1,0 +1,29 @@
+---
+- name: install_and_setup_apache2
+  hosts: apache2
+  gather_facts: yes 
+  tasks:
+
+  - name: install apache2/Ubuntu
+    apt:
+      name: apache2
+      state: present
+    #when:
+    #  - ansible_distribution == "Ubuntu"
+
+  - name: copy apache conf
+    copy:
+      src: files/index.html
+      dest: /var/www/html/            
+    #when:
+    #  - ansible_distribution == "Ubuntu"
+    #notify: restart_apache2 
+
+  #handlers:
+  #- name: restart_apache2 
+  #  systemd:
+  #    state: restarted
+  #    enabled: yes
+  #    daemon_reload: yes
+  #    name: apache2
+

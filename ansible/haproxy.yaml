@@ -1,0 +1,29 @@
+---
+- name: install_and_setup_haproxy
+  hosts: haproxy
+  gather_facts: yes 
+  tasks:
+
+  - name: install haproxy/Ubuntu
+    apt:
+      name: haproxy
+      state: present
+    #when:
+    #  - ansible_distribution == "Ubuntu"
+
+  - name: copy haproxy.cfg
+    copy:
+      src: files/haproxy.cfg
+      dest: /etc/haproxy/
+    #when:
+    #  - ansible_distribution == "Ubuntu"
+    notify: restart_haproxy 
+
+  handlers:
+  - name: restart_haproxy 
+    systemd:
+      state: restarted
+      enabled: yes
+      daemon_reload: yes
+      name: haproxy
+
