@@ -1,6 +1,6 @@
 ---
 - name: install_and_setup_apache2
-  hosts: apache2
+  hosts: apache_hosts
   gather_facts: yes 
   tasks:
 

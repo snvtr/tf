@@ -1,6 +1,6 @@
 ---
 - name: install_and_setup_haproxy
-  hosts: haproxy
+  hosts: haproxy_hosts
   gather_facts: yes 
   tasks:
 
