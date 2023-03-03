@@ -3,15 +3,15 @@ all:
   children:
     apache_hosts:
       hosts:
-        APACHE_IP: {}
+        ${APACHE_IP}: {}
     haproxy_hosts:
       hosts:
-        HAPROXY_IP: {}
+        ${HAPROXY_IP}: {}
   hosts:
-    APACHE_IP:
-      ip: APACHE_IP
-    HAPROXY_IP:
-      ip: HAPROXY_IP
+    ${APACHE_IP}:
+      ip: ${APACHE_IP}
+    ${HAPROXY_IP}:
+      ip: ${HAPROXY_IP}
   vars:
       ansible_user: ubuntu
       ansible_become: yes

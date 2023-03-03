@@ -26,17 +26,17 @@ resource "aws_instance" "control" {
     host        = aws_instance.control.public_ip
   }
 
-  provisioner "file" {
-    #source      = "files/apache.txt"
-    content     = var.apache_address
-    destination = "/tmp/apache.txt"
-  }
+  #provisioner "file" {
+  #  #source      = "files/apache.txt"
+  #  content     = var.apache_address
+  #  destination = "/tmp/apache.txt"
+  #}
 
-  provisioner "file" {
-    #source      = "files/haproxy.txt"
-    content     = var.haproxy_address
-    destination = "/tmp/haproxy.txt"
-  }
+  #provisioner "file" {
+  #  #source      = "files/haproxy.txt"
+  #  content     = var.haproxy_address
+  #  destination = "/tmp/haproxy.txt"
+  #}
 
   provisioner "file" {
     source      = "keys/id_rsa"
@@ -46,6 +46,11 @@ resource "aws_instance" "control" {
   provisioner "file" {
     source      = "ansible/"
     destination = "/tmp/"
+  }
+
+  provisioner "file" {
+    content = templatefile("files/hosts.yaml.tpl", {APACHE_IP = var.apache_address, HAPROXY_IP = var.haproxy_address})
+    destination = "/tmp/hosts.yaml"
   }
 
   provisioner "remote-exec" {
