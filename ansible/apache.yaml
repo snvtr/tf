@@ -8,16 +8,9 @@
     apt:
       name: apache2
       state: present
-    #when:
-    #  - ansible_distribution == "Ubuntu"
 
-  - name: copy apache conf
-    copy:
-      src: files/index.html
-      dest: /var/www/html/            
-    #when:
-    #  - ansible_distribution == "Ubuntu"
-    #notify: restart_apache2 
+  - name: make homepage
+    shell: /bin/echo "<html>$(hostname -I)</html>" > /var/www/html/index.html
 
   #handlers:
   #- name: restart_apache2 
