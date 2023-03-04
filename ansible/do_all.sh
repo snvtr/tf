@@ -13,11 +13,13 @@ HAPROXY_IP=$(cat /tmp/haproxy.txt)
 #sed -r -i "s/APACHE_IP/${APACHE_IP}/g"   hosts.yaml
 #sed -r -i "s/HAPROXY_IP/${HAPROXY_IP}/g" hosts.yaml
 
-# run ansible playbook for apache:
-#ansible-playbook -i hosts.yaml apache.yaml apache_hosts
-# run haproxy playbook for haproxy:
-#ansible-playbook -i hosts.yaml haproxy.yaml haproxy_hosts
-# done
-
+# reachability test
 ansible -m ping -i hosts.yaml apache_hosts
 ansible -m ping -i hosts.yaml haproxy_hosts
+
+# run ansible playbook for apache:
+ansible-playbook -i hosts.yaml apache.yaml apache_hosts
+# run haproxy playbook for haproxy:
+ansible-playbook -i hosts.yaml haproxy.yaml haproxy_hosts
+
+# done
